@@ -1,0 +1,17 @@
+
+body{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+.sec_registro{
+    background-color: aquamarine;
+    height: 500px;
+    width: 500px;
+}
+
+.sec_Uno{
+    background-color: rgb(220, 72, 72);
+    height: 500px;
+    width: 500px;
+}
