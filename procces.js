@@ -47,44 +47,45 @@ document.getElementById('login-form').addEventListener('submit', function (event
 });
 //-------------------------------LOGIN-----------------------------------------------------|
 
-  function generarEvento(){
-    
-  }
-
 
 
 
 
 //----------------------------------------------------------TAREAS----------------------------|
 
-
-
+// Selección de elementos del DOM
 const tarea = document.getElementById("tarea");
 const agregar = document.getElementById("agregar");
 const contenedorTareas = document.getElementById("contenedorTareas");
+const evento = document.getElementById("evento");
+const agregar2 = document.getElementById("agregar2");
+const contenedorEventos = document.getElementById("contenedorEventos");
 
-agregar.addEventListener("click", function () {
+// Función para agregar una tarea
+function agregarTarea(tareaValue) {
+  if (tareaValue.trim() === "") return;
 
-  let tareaValue = tarea.value;
   let pTarea = document.createElement("p");
   pTarea.textContent = tareaValue;
   pTarea.style.backgroundColor = "blue";
 
-  let chebox = document.createElement("INPUT");
+  let chebox = document.createElement("input");
   chebox.setAttribute("type", "checkbox");
 
   let BtEliminar = document.createElement("button");
-  BtEliminar.textContent = "eliminar";
+  BtEliminar.textContent = "Eliminar";
   BtEliminar.addEventListener("click", function () {
     contenedorTareas.removeChild(divPadre);
+    guardarTareasEnLocalStorage();
   });
 
   let BtEditar = document.createElement("button");
-  BtEditar.textContent = "editar";
+  BtEditar.textContent = "Editar";
   BtEditar.addEventListener("click", function () {
     let nuevoTexto = prompt("Editar tarea:", pTarea.textContent);
     if (nuevoTexto !== null) {
       pTarea.textContent = nuevoTexto;
+      guardarTareasEnLocalStorage();
     }
   });
 
@@ -94,76 +95,100 @@ agregar.addEventListener("click", function () {
   divPadre.appendChild(BtEditar);
   divPadre.appendChild(chebox);
   contenedorTareas.appendChild(divPadre);
-  tarea.value = "";
-});
 
+  guardarTareasEnLocalStorage();
+}
 
-//-------------------------------------------------------------EVENTOS-------------------------------------------------//
+// Función para agregar un evento
+function agregarEvento(eventoValue) {
+  if (eventoValue.trim() === "") return;
 
-/*practica adrian, 23/7/2024*/
-const evento = document.getElementById("evento");// cree la varial constante, document (hace referencia el html),getElementById(selecciona el elemento por el id).
-const agregar2 = document.getElementById("agregar2");//misma descripcion de arriba.
-const contenedorEventos = document.getElementById("contenedorEventos");//misma descripcion de arriba.
-
-agregar2.addEventListener("click", function () { // se agrega la funcion que agrega  desde el js , investigar el otro metodo(llamar la funcion desde el html Adrian).
-
-
-  // Obtengo el valor del campo de entrada.
-  let eventoValue = evento.value;
-
-
-  // Crear elemento parrafo.
   let pEvento = document.createElement("p");
-  pEvento.textContent = eventoValue; // Usar textContent para establecer el texto del parrafo.
+  pEvento.textContent = eventoValue;
   pEvento.style.backgroundColor = "black";
 
-
-
-
-
-  //boton de checkbox para marcar las tareas
-  let chebox2 = document.createElement("INPUT");
+  let chebox2 = document.createElement("input");
   chebox2.setAttribute("type", "checkbox");
 
-
-
-
-
-  // Crear boton de eliminar, se estructura desde el vento addEventListener para llamar a la funcion, probar llamar la funcion desde el html.
   let BtEliminar2 = document.createElement("button");
-  BtEliminar2.textContent = "eliminar Evento";
+  BtEliminar2.textContent = "Eliminar Evento";
   BtEliminar2.addEventListener("click", function () {
-    contenedorEventos.removeChild(divPadre2); // Eliminar el contenedor de la tarea.
-    // el metodo child elimina los datos en el contenedor al ser los hijos del tareaContainer
+    contenedorEventos.removeChild(divPadre2);
+    guardarEventosEnLocalStorage();
   });
 
-
-  //Crear boton de editar, probar otro metodo para la llamada de funcion.
   let BtEditar2 = document.createElement("button");
-  BtEditar2.textContent = "editar";
+  BtEditar2.textContent = "Editar";
   BtEditar2.addEventListener("click", function () {
-    let nuevoTexto2 = prompt("Editar tarea:", pEvento.textContent);
+    let nuevoTexto2 = prompt("Editar evento:", pEvento.textContent);
     if (nuevoTexto2 !== null) {
-      pEvento.textContent = nuevoEvento;
+      pEvento.textContent = nuevoTexto2;
+      guardarEventosEnLocalStorage();
     }
   });
 
-
-  // Crear contenedor (div) para agrupar la tarea y botones
   let divPadre2 = document.createElement("div");
-  divPadre2.appendChild(pEvento); // Agregar parrafo al contenedor
-  divPadre2.appendChild(BtEliminar2); // Agrega boton eliminar al contenedor
-  divPadre2.appendChild(BtEditar2); // Agrega boton editar al contenedor
-  divPadre2.appendChild(chebox2);// Agrega el checkbox
+  divPadre2.appendChild(pEvento);
+  divPadre2.appendChild(BtEliminar2);
+  divPadre2.appendChild(BtEditar2);
+  divPadre2.appendChild(chebox2);
+  contenedorEventos.appendChild(divPadre2);
+
+  guardarEventosEnLocalStorage();
+}
+
+// Función para guardar tareas en localStorage
+function guardarTareasEnLocalStorage() {
+  const tareas = [];
+  contenedorTareas.querySelectorAll("div").forEach(function(div) {
+    const tareaTexto = div.querySelector("p").textContent;
+    tareas.push(tareaTexto);
+  });
+  localStorage.setItem("tareas", JSON.stringify(tareas));
+}
+
+// Función para guardar eventos en localStorage
+function guardarEventosEnLocalStorage() {
+  const eventos = [];
+  contenedorEventos.querySelectorAll("div").forEach(function(div) {
+    const eventoTexto = div.querySelector("p").textContent;
+    eventos.push(eventoTexto);
+  });
+  localStorage.setItem("eventos", JSON.stringify(eventos));
+}
 
 
-  contenedorEventos.appendChild(divPadre2); // Agregar el contenedor al contenedor principal de tareas
+
+//------------------------------------------------------------
+// Función para cargar tareas desde localStorage
+function cargarTareasDesdeLocalStorage() {
+
+  var tareasJSON = localStorage.getItem("tareas");
+  var tareas = tareasJSON ? JSON.parse(tareasJSON) : [];
+  tareas.forEach(function(tarea) {
+    agregarTarea(tarea);
+  });
+}
+//------------------------------------------------------------
 
 
-  // Limpiar campo de entrada despues de agregar la tarea
-  evento.value = "";
+// Función para cargar eventos desde localStorage
+function cargarEventosDesdeLocalStorage() {
+  const eventos = JSON.parse(localStorage.getItem("eventos") || "[]");
+  eventos.forEach(evento => agregarEvento(evento));
+}
 
-  //recordatorio tratar de cambiar el metodo de llamado de las funciones por medio del html.
+// Agregar eventos de clic a los botones
+agregar.addEventListener("click", function () {
+  agregarTarea(tarea.value);
+  tarea.value = "";
 });
-// investigar acerca del DOM parece ser una estructura de datos dinamica
-// metodo usados
+
+agregar2.addEventListener("click", function () {
+  agregarEvento(evento.value);
+  evento.value = "";
+});
+
+// Cargar tareas y eventos al iniciar la página
+cargarTareasDesdeLocalStorage();
+cargarEventosDesdeLocalStorage();
