@@ -22,7 +22,6 @@ document.getElementById('register-form').addEventListener('submit', function (ev
 //-------------------------------REGISTER-----------------------------------------------------|
 
 
-
 //-------------------------------LOGIN-----------------------------------------------------|
 document.getElementById('login-form').addEventListener('submit', function (event) {
   event.preventDefault();
@@ -53,7 +52,7 @@ document.getElementById('login-form').addEventListener('submit', function (event
 
 //----------------------------------------------------------TAREAS----------------------------|
 
-// Selección de elementos del DOM
+// Selección de elementos del DOM 
 const tarea = document.getElementById("tarea");
 const agregar = document.getElementById("agregar");
 const contenedorTareas = document.getElementById("contenedorTareas");
@@ -61,13 +60,42 @@ const evento = document.getElementById("evento");
 const agregar2 = document.getElementById("agregar2");
 const contenedorEventos = document.getElementById("contenedorEventos");
 
-// Función para agregar una tarea
+
+
+
+
+
+
+//-----------------------------------------------Agregar eventos de clic a los botones--------------------------------||
+agregar.addEventListener("click", function () {
+  agregarTarea(tarea.value);
+ const prioridad = prompt("ingrese la prioridad de la tarea");
+
+  tarea.value = "";
+
+});
+
+agregar2.addEventListener("click", function () {
+  agregarEvento(evento.value);
+  evento.value = "";
+});
+//-----------------------------------------------Agregar eventos de clic a los botones--------------------------------||
+
+
+
+
+
+
+//------------------------------------------Función para agregar una tarea--------------------------|
 function agregarTarea(tareaValue) {
-  if (tareaValue.trim() === "") return;
+
 
   let pTarea = document.createElement("p");
   pTarea.textContent = tareaValue;
   pTarea.style.backgroundColor = "blue";
+
+  let prioridad = document.createElement("promp")
+  
 
   let chebox = document.createElement("input");
   chebox.setAttribute("type", "checkbox");
@@ -98,17 +126,22 @@ function agregarTarea(tareaValue) {
 
   guardarTareasEnLocalStorage();
 }
+//------------------------------------------Función para agregar una tarea--------------------------|
 
-// Función para agregar un evento
+
+
+
+
+//----------------------------------------------Función para agregar un evento-----------------------------------||
 function agregarEvento(eventoValue) {
   if (eventoValue.trim() === "") return;
 
   let pEvento = document.createElement("p");
   pEvento.textContent = eventoValue;
-  pEvento.style.backgroundColor = "black";
+  pEvento.style.backgroundColor = "yellow";
 
   let chebox2 = document.createElement("input");
-  chebox2.setAttribute("type", "checkbox");
+  chebox2.setAttribute("type", "datetime-local");
 
   let BtEliminar2 = document.createElement("button");
   BtEliminar2.textContent = "Eliminar Evento";
@@ -132,10 +165,24 @@ function agregarEvento(eventoValue) {
   divPadre2.appendChild(BtEliminar2);
   divPadre2.appendChild(BtEditar2);
   divPadre2.appendChild(chebox2);
+
   contenedorEventos.appendChild(divPadre2);
 
   guardarEventosEnLocalStorage();
 }
+
+
+
+
+
+
+
+//------------------------------------------- Funciones Local Estorage-------------------------------------------------
+
+
+
+
+
 
 // Función para guardar tareas en localStorage
 function guardarTareasEnLocalStorage() {
@@ -177,17 +224,6 @@ function cargarEventosDesdeLocalStorage() {
   const eventos = JSON.parse(localStorage.getItem("eventos") || "[]");
   eventos.forEach(evento => agregarEvento(evento));
 }
-
-// Agregar eventos de clic a los botones
-agregar.addEventListener("click", function () {
-  agregarTarea(tarea.value);
-  tarea.value = "";
-});
-
-agregar2.addEventListener("click", function () {
-  agregarEvento(evento.value);
-  evento.value = "";
-});
 
 // Cargar tareas y eventos al iniciar la página
 cargarTareasDesdeLocalStorage();
