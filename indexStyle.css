@@ -1,17 +1,177 @@
+body {
+    background-color: #dcae33;
+}
 
-body{
+button {
+    border: 2px solid #ffffff00;
+    background-color: #dcae33;
+    border-radius: 2px;
+    box-shadow: 0px 0px 20px 0px #8a83284e;
+    color: #ffffff;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+
+/*--------------------------------------------------*/
+
+.datetime-local-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.datetime-local-wrapper input[type="datetime-local"] {
+    padding-right: 40px; 
+}
+
+.datetime-local-wrapper::before {
+    content: '\1F4C5'; /* Unicode del icono del calendario */
+    font-size: 18px;
+    color: #007bff; /* Color del icono */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+/*--------------------------------------------------*/
+
+
+input {
+    color: #ffffff;
+    border: 2px solid #ffffff00;
+    background-color: #dcae33;
+    border-radius: 2px;
+
+}
+
+select {
+    color: #dcae33;
+    border: 2px solid #ffffff00;
+    background-color: #ffffff;
+    border-radius: 2px;
+    
+}
+
+a {
+    color: #ffffff;
+}
+
+.cajitas {
     display: flex;
     justify-content: center;
-    flex-direction: row;
-}
-.sec_registro{
-    background-color: aquamarine;
-    height: 500px;
-    width: 500px;
+    left: 0%;
+    right: 0%;
 }
 
-.sec_Uno{
-    background-color: rgb(220, 72, 72);
-    height: 500px;
+
+#notaEvento{
+    box-shadow: #967623 0px 1px 2px 0px, #967623 0px 1px 3px 1px;
+   
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+
+}
+
+#notaTarea{
+    box-shadow: #967623 0px 1px 2px 0px, #967623 0px 1px 3px 1px;
+    
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.sec_registro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #dcae33;
+    background-color: #e3ddb8;
+    height: 100%;
     width: 500px;
+
+    border-radius: 10px;
+    margin: 2%;
+    box-shadow: #967623 0px 1px 2px 0px, #967623 0px 1px 3px 1px;
+    padding: 10px;
+}
+
+
+.sec_Uno {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #dcae33;
+    background-color: #e3ddb8;
+    height: 100%;
+    width: 500px;
+
+    border-radius: 10px;
+    margin: 2%;
+    box-shadow: #967623 0px 1px 2px 0px, #967623 0px 1px 3px 1px;
+    padding: 10px;
+}
+
+#register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #dcae33;
+    background-color: #e3ddb8;
+    height: 100%;
+    width: 500px;
+
+    border-radius: 10px;
+    margin: 2%;
+    box-shadow: #967623 0px 1px 2px 0px, #967623 0px 1px 3px 1px;
+    padding: 10px;
+}
+#login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #dcae33;
+    background-color: #e3ddb8;
+    height: 100%;
+    width: 500px;
+
+    border-radius: 10px;
+    margin: 2%;
+    box-shadow: #967623 0px 1px 2px 0px, #967623 0px 1px 3px 1px;
+    padding: 10px;
+}
+#register-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #dcae33;
+    background-color: #e3ddb8;
+    height: 100%;
+    width: 500px;
+    border-radius: 10px;
+    margin: 2%;
+    padding: 10px;
+}
+#login-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #dcae33;
+    background-color: #e3ddb8;
+    height: 100%;
+    width: 500px;
+    border-radius: 10px;
+    margin: 2%;
+    padding: 10px;
 }

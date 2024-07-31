@@ -1,47 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="indexStyle.css">
 </head>
+
 <body>
-    
-    <header>
-        <nav class="nav-Head">
-            <a href="login.html"><span>login</span></a>
-            <br>
-            <a href="index.html"><span>home</span></a>
-        </nav>
-    </header>
 
+<!--------------------------------------------------NAVEGADOR------------------------------------------------------------------------------>
+<nav  class="navbar navbar-expand-lg " style="background-color: #e3ddb8; box-shadow: #967623 0px 1px 2px 0px, #967623 0px 1px 3px 1px;">
+  <div class="container-fluid">
+    <img style="height: 80px;" src="/assets/imagenLogo.png" alt="">
+    <a class="navbar-brand"><img src="/assets/logo.png" style="height: 80px;" alt=""></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" style="color: #dcae33; font-size: 25px" aria-current="page" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" style="color: #dcae33; font-size: 25px"  aria-current="page" href="login.html">login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" style="color: #dcae33; font-size: 25px"  aria-current="page" href="register.html">Register</a>
+        </li>
+      </ul>
+      <img src="" alt="">
+    </div>
+  </div>
+</nav>
+<!--------------------------------------------------NAVEGADOR------------------------------------------------------------------------------>
+  
+  <section class="cajitas">
     <div id="register-container">
-        <h2>Registrar</h2>
-        <form id="register-form">
-            <label for="reg-username">Usuario:</label>
-            <input type="text" id="reg-username" name="reg-username" required>
-            <br>
-            <label for="reg-password">Contraseña:</label>
-            <input type="password" id="reg-password" name="reg-password" required>
-            <br>
-            <button type="submit">Registrar</button>
-        </form>
+      <h2>Registrar</h2>
+      <form id="register-form">
+        <label for="reg-username">Usuario:</label>
+        <input type="text" id="reg-username" name="reg-username" required>
+        <br>
+        <label for="reg-password">Contraseña:</label>
+        <input type="password" id="reg-password" name="reg-password" required>
+        <br>
+        <button type="submit">Registrar</button>
+      </form>
     </div>
+  </section>
 
-    <div style="display: none;" id="login-container" >
-        <h2>Login</h2>
-        <form id="login-form">
-            <label for="username">Usuario:</label>
-            <input type="text" id="username" name="username" required>
-            <br>
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password" required>
-            <br>
-            <button type="submit">Entrar</button>
-        </form>
-    </div>
-    
-    <script src="procces.js"></script>
+
+
+  <div style="display: none;" id="login-container">
+    <h2>Login</h2>
+    <form id="login-form">
+      <label for="username">Usuario:</label>
+      <input type="text" id="username" name="username" required>
+      <br>
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" name="password" required>
+      <br>
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
+
+  <script src="procces.js"></script>
 </body>
+
 </html>

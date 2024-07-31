@@ -1,121 +1,120 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control de Acceso</title>
-     <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control de Acceso</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="indexStyle.css">
 </head>
+
 <body>
-    
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-              </li>
-            </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
-        </div>
-      </nav>
 
-  
-    <section class="sec_registro">
+<!--------------------------------------------------NAVEGADOR------------------------------------------------------------------------------>
+  <nav  class="navbar navbar-expand-lg " style="background-color: #e3ddb8; box-shadow: #967623 0px 1px 2px 0px, #967623 0px 1px 3px 1px;">
+    <div class="container-fluid">
+      <img style="height: 80px;" src="/assets/imagenLogo.png" alt="">
+      <a class="navbar-brand"><img src="/assets/logo.png" style="height: 80px;" alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" style="color: #dcae33; font-size: 25px" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" style="color: #dcae33; font-size: 25px"  aria-current="page" href="login.html">login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" style="color: #dcae33; font-size: 25px"  aria-current="page" href="register.html">Register</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!--------------------------------------------------NAVEGADOR------------------------------------------------------------------------------>
 
-       
+<!--------------------------------------------------ESTRUCTURAS CAJITAS------------------------------------------------------------------------------>
+  <section class="cajitas">
 
-        <h2>Tareas</h2>
-        <input type="text" id="tarea" required>
-        <br>
-        <button id="agregar">agregar</button>
-
-        <div id="contenedorTareas">
-          
-        </div>
-   
-    </section>
-    
-    
-    
-    <section class="sec_Uno">
-
-        <h2>Eventos</h2>
-        <input type="text" id="evento" required>
-        <br>
-        <button id="agregar2">agregar</button>
-
-        <div id="contenedorEventos">
-          
-        </div>
-   
-    </section>
-   
+    <div class="sec_registro">
+      <h2>Tareas</h2>
+      <label>Ingrese la tarea:</label>
+      <input type="text" id="tarea" required>
+      <br>
+      <label for="prioridad">Elije la prioridad:</label>
+      <select name="prioridad" id="prioridad">
+        <option value="Baja">Baja</option>
+        <option value="Media">Media</option>
+        <option value="Alta">Alta</option>
+      </select>
+      <br>
+      <button id="agregar">agregar</button>
+      <br>
 
 
-    <div style="display: none;" id="register-container">
-        <h2>Registrar</h2>
-        <form id="register-form">
-            <label for="reg-username">Usuario:</label>
-            <input type="text" id="reg-username" name="reg-username" required>
-            <br>
-            <label for="reg-password">Contraseña:</label>
-            <input type="password" id="reg-password" name="reg-password" required>
-            <br>
-            <button type="submit">Registrar</button>
-        </form>
+      <!--------------------------------------------------CONTENEDOR CAJITAS------------------------------------------------------------------------------>
+      <div id="contenedorTareas">
+
+      </div>
+      <!--------------------------------------------------CONTENEDOR CAJITAS------------------------------------------------------------------------------>
+
+    </div>
+
+    <div class="sec_Uno">
+      <h2>Eventos</h2>
+      <label >Ingrese el Evento:</label>
+      <input type="text" id="evento" required>
+      <br>
+      <label for="cars">agregue la fecha:</label>
+      <input type="datetime-local" id="fecha">
+      <br>
+      <button id="agregar2">agregar</button>
+      <br>
+      <div id="contenedorEventos">
+      </div>
     </div>
 
 
+  </section>
+<!--------------------------------------------------ESTRUCTURAS CAJITAS------------------------------------------------------------------------------>
 
 
 
 
+<!--------------------------------------------------Registros------------------------------------------------------------------------------>
+  <div style="display: none;" id="register-container">
+    <h2>Registrar</h2>
+    <form id="register-form">
+      <label for="reg-username">Usuario:</label>
+      <input type="text" id="reg-username" name="reg-username" required>
+      <br>
+      <label for="reg-password">Contraseña:</label>
+      <input type="password" id="reg-password" name="reg-password" required>
+      <br>
+      <button type="submit">Registrar</button>
+    </form>
+  </div>
 
 
-
-
-
-
-
-
-    
-    <div style="display: none;" id="login-container" >
-        <h2>Login</h2>
-        <form id="login-form">
-            <label for="username">Usuario:</label>
-            <input type="text" id="username" name="username" required>
-            <br>
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password" required>
-            <br>
-            <button type="submit">Entrar</button>
-        </form>
+  <div style="display: none;" id="login-container">
+    <h2>Login</h2>
+    <form id="login-form">
+      <label for="username">Usuario:</label>
+      <input type="text" id="username" name="username" required>
+      <br>
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" name="password" required>
+      <br>
+      <button type="submit">Entrar</button>
+    </form>
     <script src="procces.js"></script>
+    
+<!--------------------------------------------------Registros------------------------------------------------------------------------------>
+
 </body>
+
 </html>
