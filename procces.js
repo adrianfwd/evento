@@ -1,13 +1,18 @@
-
-//-------------------------------REGISTER-----------------------------------------------------|
+//-------------------------------REGISTER----------------------------------------------------|
 document.getElementById('register-form').addEventListener('submit', function (event) {
   event.preventDefault();
   var regUsername = document.getElementById('reg-username').value;
   var regPassword = document.getElementById('reg-password').value;
 
   if (regUsername && regPassword) {
-    var users = JSON.parse(localStorage.getItem('users')) || [];
-    let userExists = users.some(user => user.username === regUsername);
+    var users = JSON.parse(localStorage.getItem('users'));
+    if (users == null || users == undefined) {
+      users = [];
+    }
+
+    var userExists = users.some(function (user) {
+      return user.username === regUsername;
+    });
 
     if (!userExists) {
       users.push({ username: regUsername, password: regPassword });
@@ -21,16 +26,22 @@ document.getElementById('register-form').addEventListener('submit', function (ev
 });
 //-------------------------------REGISTER-----------------------------------------------------|
 
-
-//-------------------------------LOGIN-----------------------------------------------------|
+//-------------------------------LOGIN--------------------------------------------------------|
 document.getElementById('login-form').addEventListener('submit', function (event) {
   event.preventDefault();
   var regUsername = document.getElementById('username').value;
   var regPassword = document.getElementById('password').value;
 
   if (regUsername && regPassword) {
-    var users = JSON.parse(localStorage.getItem('users')) || [];
-    let userExist = users.some(user => user.username === regUsername && user.password === regPassword);
+    var users = JSON.parse(localStorage.getItem('users'));
+    if (users == null || users == undefined) {
+      users = [];
+    }
+
+    var userExist = users.some(function (user) {
+      return user.username === regUsername && user.password === regPassword;
+    });
+
 
     if (userExist) {
       alert('El usuario ha iniciado sesión exitosamente.');
@@ -44,14 +55,9 @@ document.getElementById('login-form').addEventListener('submit', function (event
     alert('Por favor, ingresa un nombre de usuario y una contraseña.');
   }
 });
-//-------------------------------LOGIN-----------------------------------------------------|w
+//-------------------------------LOGIN-------------------------------------------------------|
 
-
-
-
-
-
-// Selección de elementos del DOM 
+//-------------------------------------------------Selección de elementos del DOM---------------------------------------------------|| 
 const tarea = document.getElementById("tarea");
 const prioridad = document.getElementById("prioridad");
 const agregar = document.getElementById("agregar");
@@ -60,34 +66,25 @@ const evento = document.getElementById("evento");
 const fecha = document.getElementById("fecha");
 const agregar2 = document.getElementById("agregar2");
 const contenedorEventos = document.getElementById("contenedorEventos");
+//-------------------------------------------------Selección de elementos del DOM---------------------------------------------------|| 
 
-
-
-
-
-
-//-----------------------------------------------Agregar eventos de clic a los botones--------------------------------||
+//-----------------------------------------------eventos de clic a los botones--------------------------------||
 agregar.addEventListener("click", function () {
   agregarTarea(tarea.value, prioridad.value);
   tarea.value = "";
 });
-
 agregar2.addEventListener("click", function () {
   agregarEvento(evento.value, fecha.value);
   evento.value = "";
   fecha.value = "";
 });
-//-----------------------------------------------Agregar eventos de clic a los botones--------------------------------||
-
-
-
-
-
+//-----------------------------------------------eventos de clic a los botones--------------------------------||
 
 //------------------------------------------Función para agregar una tarea--------------------------|
 function agregarTarea(tareaValue, prioridadValue) {
   let divPadre = document.createElement("div");
   divPadre.classList.add("notaTarea");
+  //if (tareaValue.trim() === "") return;
 
   let pTarea = document.createElement("p");
   pTarea.textContent = tareaValue;
@@ -108,7 +105,6 @@ function agregarTarea(tareaValue, prioridadValue) {
   let BtEditar = document.createElement("button");
   BtEditar.textContent = "Editar";
   BtEditar.addEventListener("click", function () {
-    // Crear elementos de edición
     let editDiv = document.createElement("div");
 
     let inputTarea = document.createElement("input");
@@ -147,7 +143,6 @@ function agregarTarea(tareaValue, prioridadValue) {
     editDiv.appendChild(selectPrioridad);
     editDiv.appendChild(saveButton);
     editDiv.appendChild(cancelButton);
-
     divPadre.appendChild(editDiv);
   });
 
@@ -160,10 +155,9 @@ function agregarTarea(tareaValue, prioridadValue) {
 
   guardarTareasEnLocalStorage();
 }
-//------------------------------------------Función para agregar una tarea--------------------------|
+//------------------------------------------Función para agregar una tarea-----------------------------------------------||
 
-
-//----------------------------------------------Función para agregar un evento-----------------------------------||
+//----------------------------------------------Función para agregar un evento-------------------------------------------||
 function agregarEvento(eventoValue, fechaValue) {
   //if (eventoValue.trim() === "") return;
 
@@ -186,7 +180,6 @@ function agregarEvento(eventoValue, fechaValue) {
   let BtEditar2 = document.createElement("button");
   BtEditar2.textContent = "Editar";
   BtEditar2.addEventListener("click", function () {
-    // Crear elementos de edición
     let editDiv2 = document.createElement("div");
 
     let inputEvento = document.createElement("input");
@@ -229,11 +222,10 @@ function agregarEvento(eventoValue, fechaValue) {
 
   guardarEventosEnLocalStorage();
 }
-//----------------------------------------------Función para agregar un evento-----------------------------------||
+//----------------------------------------------Función para agregar un evento-----------------------------------------------||
 
 
-//------------------------------------------- Funciones Local Storage-------------------------------------------------
-// Función para guardar tareas en localStorage
+//------------------------------------------- Funciones Guardar Local Storage------------------------------------------------||
 function guardarTareasEnLocalStorage() {
   const tareas = [];
   contenedorTareas.querySelectorAll("div").forEach(function (div) {
@@ -244,8 +236,7 @@ function guardarTareasEnLocalStorage() {
   localStorage.setItem("tareas", JSON.stringify(tareas));
 }
 
-// Función para guardar eventos en localStorage
-function guardarEventosEnLocalStorage() {
+function guardarEventosEnLocalSt() {
   const eventos = [];
   contenedorEventos.querySelectorAll("div").forEach(function (div) {
     const eventoTexto = div.querySelector("p").textContent;
@@ -254,27 +245,26 @@ function guardarEventosEnLocalStorage() {
   });
   localStorage.setItem("eventos", JSON.stringify(eventos));
 }
+//------------------------------------------- Funciones Guardar Local Storage------------------------------------------------||
 
-//------------------------------------------------------------
-// Función para cargar tareas desde localStorage
-function cargarTareasDesdeLocalStorage() {
+//-----------------------Función para cargar eventos desde localStorage------------------------------------------------------||
+function cargarTareasLocalSt() {
   var tareasJSON = localStorage.getItem("tareas");
   var tareas = tareasJSON ? JSON.parse(tareasJSON) : [];
   tareas.forEach(function (tarea) {
     agregarTarea(tarea.texto, tarea.prioridad);
   });
 }
-//------------------------------------------------------------
 
-
-// Función para cargar eventos desde localStorage
-function cargarEventosDesdeLocalStorage() {
-  const eventos = JSON.parse(localStorage.getItem("eventos"));
+function cargarEventosLocalSt() {
+  var eventos = JSON.parse(localStorage.getItem("eventos"));
   if (eventos === "")
     eventos = [];
-  eventos.forEach(evento => agregarEvento(evento.texto, evento.fecha));
+  eventos.forEach(function (evento) {
+    agregarEvento(evento.texto, evento.fecha);
+  });
 }
 
-// Cargar tareas y eventos al iniciar la página
-cargarTareasDesdeLocalStorage();
-cargarEventosDesdeLocalStorage();
+cargarTareasLocalSt();
+cargarEventosLocalS();
+//-----------------------Función para cargar eventos desde localStorage-------------------------------------------------------]]
