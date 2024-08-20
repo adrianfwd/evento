@@ -99,7 +99,7 @@ function agregarTarea(tareaValue, prioridadValue) {
   BtEliminar.textContent = "Eliminar";
   BtEliminar.addEventListener("click", function () {
     contenedorTareas.removeChild(divPadre);
-    guardarTareasEnLocalStorage();
+    guardarTareasEnLocalStorage()
   });
 
   let BtEditar = document.createElement("button");
@@ -153,7 +153,7 @@ function agregarTarea(tareaValue, prioridadValue) {
   divPadre.appendChild(BtEditar);
   contenedorTareas.appendChild(divPadre);
 
-  guardarTareasEnLocalStorage();
+  guardarTareasEnLocalStorage()
 }
 //------------------------------------------Función para agregar una tarea-----------------------------------------------||
 
@@ -174,7 +174,7 @@ function agregarEvento(eventoValue, fechaValue) {
   BtEliminar2.textContent = "Eliminar Evento";
   BtEliminar2.addEventListener("click", function () {
     contenedorEventos.removeChild(divPadre2);
-    guardarEventosEnLocalStorage();
+    guardarEventosEnLocalSt()
   });
 
   let BtEditar2 = document.createElement("button");
@@ -220,7 +220,7 @@ function agregarEvento(eventoValue, fechaValue) {
 
   contenedorEventos.appendChild(divPadre2);
 
-  guardarEventosEnLocalStorage();
+  guardarEventosEnLocalSt()
 }
 //----------------------------------------------Función para agregar un evento-----------------------------------------------||
 
@@ -257,14 +257,13 @@ function cargarTareasLocalSt() {
 }
 
 function cargarEventosLocalSt() {
-  var eventos = JSON.parse(localStorage.getItem("eventos"));
-  if (eventos === "")
-    eventos = [];
+  var eventos = JSON.parse(localStorage.getItem("eventos")) || [];
+
   eventos.forEach(function (evento) {
     agregarEvento(evento.texto, evento.fecha);
   });
 }
 
 cargarTareasLocalSt();
-cargarEventosLocalS();
+cargarEventosLocalSt();
 //-----------------------Función para cargar eventos desde localStorage-------------------------------------------------------]]
